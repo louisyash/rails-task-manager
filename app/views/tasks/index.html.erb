@@ -1,5 +1,8 @@
-<h1>Task list</h1>
+<div class="container">
 
+<h1 class="border m-2">Task list</h1>
+
+<div class="contents border p-5">
 <% @tasks.each do |task| %>
   <ul>
     <li> <input type="checkbox" name="completed"
@@ -8,7 +11,13 @@
          <% else %>
           unchecked
          <% end %>>
-        <%= link_to task.title, "/tasks/#{task.id}" %>
+        <%= link_to task.title, task_path(task), class:"btn" %>
+        <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "Do you want to delete #{task.title}" }, class: "btn btn-danger m-2 p-1"%>
     </li>
   </ul>
 <% end %>
+<div>
+
+<%= link_to "Create new task", new_task_path, class: "btn btn-primary m-4" %>
+
+</div>
